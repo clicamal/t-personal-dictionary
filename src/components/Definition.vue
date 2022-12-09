@@ -12,7 +12,8 @@
 -->
 
 <template>
-	<li class="definitions-list-item"><i id="language">{{ data.language }}</i>{{ data.word }} — {{ data.translation }}</li>
+	<li class="definitions-list-item"><i id="language">{{ data.language }}</i>{{ data.word }} — {{ data.translation }}
+	</li>
 </template>
 
 <script lang="ts">
@@ -32,7 +33,7 @@ export default defineComponent({
 
 <style scoped>
 i#language {
-	color: rgba(0, 0, 0, 0.25);
+	color: rgba(0, 0, 0, 0.5);
 	padding-right: 10px;
 }
 </style>

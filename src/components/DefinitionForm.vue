@@ -19,6 +19,8 @@
 			<label id="word-label" for="word-input" class="definition-form-label">Word</label>
 		</div>
 
+		<i style="padding: 0px 20px;" class="small material-icons">translate</i>
+
 		<div id="translation-data" class="input-field inline definition-form-data">
 			<input ref="translation" v-model="translation" id="translation-input" type="text" name="translation"
 				class="definition-form-input" autocomplete="off" required>
