@@ -14,29 +14,52 @@
 <template>
   <div id="root">
     <div id="definition-form-wrapper">
-      <DefinitionForm />
+      <DefinitionForm @add-definition="addDefinition" />
     </div>
 
     <div id="definitions-wrapper">
-      <DefinitionsList />
+      <div id="definitions">
+        <h4 id="definitions-heading">Definitions:</h4>
+        <ol id="definitions-list">
+          <Definition v-for="(definition, index) in definitions" :data="definition" :key="index" />
+        </ol>
+      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import DefinitionForm from './components/DefinitionForm';
-import DefinitionsList from './components/DefinitionsList';
+import DefinitionForm from './components/DefinitionForm.vue';
+import Definition from './components/Definition.vue';
+import DefinitionInterface from './interfaces/DefinitionInterface';
 
 export default defineComponent({
   name: 'App',
   components: {
     DefinitionForm,
-    DefinitionsList
+    Definition
+  },
+  data() {
+    return {
+      definitions: [] as DefinitionInterface[]
+    }
+  },
+  methods: {
+    addDefinition(payload: DefinitionInterface) {
+      this.definitions.push(payload);
+    }
   }
 });
 </script>
 
 <style scoped>
-    
+div#root {
+  padding: 15px;
+}
+
+ol#definitions-list {
+  padding-left: 30px;
+  list-style-type: none;
+}
 </style>

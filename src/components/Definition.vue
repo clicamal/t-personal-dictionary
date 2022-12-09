@@ -12,26 +12,27 @@
 -->
 
 <template>
-	<div id="definitions">
-		<h4>Translations:</h4>
-		<ol id="definitions-list">
-			<li>Word - Definition</li>
-			<li>Word - Definition</li>
-			<li>Word - Definition</li>
-			<li>Word - Definition</li>
-			<li>Word - Definition</li>
-		</ol>
-	</div>
+	<li class="definitions-list-item"><i id="language">{{ data.language }}</i>{{ data.word }} — {{ data.translation }}</li>
 </template>
 
 <script lang="ts">
-	import { defineComponent } from 'vue';
+import { defineComponent, PropType } from 'vue';
+import Definition from '../interfaces/DefinitionInterface';
 
-	export default defineComponent({
-		name: 'DefinitionsList'
-	});
+export default defineComponent({
+	name: 'DefinitionsListItem',
+	props: {
+		data: {
+			type: Object as PropType<Definition>,
+			required: true
+		}
+	}
+});
 </script>
 
 <style scoped>
-	
+i#language {
+	color: rgba(0, 0, 0, 0.25);
+	padding-right: 10px;
+}
 </style>
