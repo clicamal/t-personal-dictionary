@@ -12,31 +12,26 @@
 -->
 
 <template>
-  <div id="root">
-    <div id="definition-form-wrapper">
-      <DefinitionForm />
-    </div>
-
-    <div id="definitions-wrapper">
-      <DefinitionsList />
-    </div>
-  </div>
+	<div id="definitions">
+		<h4>Translations:</h4>
+		<ol id="definitions-list">
+			<li>Word - Definition</li>
+			<li>Word - Definition</li>
+			<li>Word - Definition</li>
+			<li>Word - Definition</li>
+			<li>Word - Definition</li>
+		</ol>
+	</div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import DefinitionForm from './components/DefinitionForm';
-import DefinitionsList from './components/DefinitionsList';
+	import { defineComponent } from 'vue';
 
-export default defineComponent({
-  name: 'App',
-  components: {
-    DefinitionForm,
-    DefinitionsList
-  }
-});
+	export default defineComponent({
+		name: 'DefinitionsList'
+	});
 </script>
 
 <style scoped>
-    
+	
 </style>
