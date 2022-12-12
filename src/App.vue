@@ -12,10 +12,14 @@
 -->
 
 <template>
-  <div id="root">
+  <div id="root" :class="{ 'darkmode': darkmodeOn }">
     <nav id="navbar">
       <div id="navbar-content-wrapper" class="nav-wrapper teal lighten-1">
         <a id="logo" class="brand-logo">T Personal Dictionary</a>
+
+        <ul id="navbar-menu-list" class="right hide-on-med-and-down">
+          <DarkmodeSwitch @toggle-darkmode="toggleDarkmode" />
+        </ul>
       </div>
     </nav>
     <div id="content">
@@ -27,13 +31,16 @@
         <div id="definitions">
           <h4 id="definitions-heading">Definitions:</h4>
           <ol id="definitions-list">
+            <div v-if="noDefinitions" class="definitions-list-item">
+              No definitions created yet :(
+            </div>
             <Definition v-for="(definition, index) in definitions" :data="definition" :key="index" />
           </ol>
         </div>
       </div>
     </div>
 
-    <footer id="footer" class="page-footer  teal lighten-1">
+    <footer id="footer" class="page-footer teal lighten-1">
       <div id="footer-content-wrapper" class="container">
         <div id="copyright-notice-wrapper" class="footer-copyright  teal lighten-1">
           <div id="copyright-notice" class="container">
@@ -51,34 +58,62 @@
 import { defineComponent } from 'vue';
 import DefinitionForm from './components/DefinitionForm.vue';
 import Definition from './components/Definition.vue';
+import DarkmodeSwitch  from './components/DarkmodeSwitch.vue';
 import DefinitionInterface from './interfaces/DefinitionInterface';
 
 export default defineComponent({
   name: 'App',
   components: {
     DefinitionForm,
-    Definition
+    Definition,
+    DarkmodeSwitch
   },
   data() {
     return {
-      definitions: [] as DefinitionInterface[]
+      definitions: [] as DefinitionInterface[],
+      darkmodeOn: false
+    };
+  },
+  computed: {
+    noDefinitions(): boolean {
+      return this.definitions.length === 0;
     }
   },
   methods: {
     addDefinition(payload: DefinitionInterface) {
       this.definitions.push(payload);
+    },
+    toggleDarkmode(payload: boolean) {
+        this.darkmodeOn = payload;
     }
   }
 });
 </script>
 
 <style scoped>
+div#root {
+  --theme-color: #00897b;
+  --secondary-color: #e0f2f1;
+  --text-color: black;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+}
+
+div#root.darkmode {
+  --theme-color: #263238;
+  --secondary-color: #546e7a;
+  --text-color: white;
+}
+
 div#navbar-content-wrapper {
   padding-left: 15px;
+  padding-right: 15px;
+  background-color: var(--theme-color) !important;
 }
 
 div#content {
   padding: 15px;
+  height: 100vh;
 }
 
 ol#definitions-list {
@@ -90,5 +125,10 @@ footer#footer {
   position: fixed;
   bottom: 0px;
   width: 100%;
+  background-color: var(--theme-color) !important;
+}
+
+div#copyright-notice-wrapper {
+  background-color: var(--theme-color) !important;
 }
 </style>

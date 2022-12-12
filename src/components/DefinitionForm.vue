@@ -72,5 +72,22 @@ export default defineComponent({
 </script>
 
 <style scoped>
+input,
+label {
+	color: var(--text-color) !important;
+}
 
+input {
+	border-color: var(--text-color) !important;
+}
+
+/* label underline focus color */
+.row .input-field input:focus {
+	border-bottom: 1px solid red !important;
+	box-shadow: 0 1px 0 0 red !important
+}
+
+button#definition-form-submit-button {
+	background-color: var(--theme-color) !important;
+}
 </style>
